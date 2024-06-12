@@ -3,12 +3,14 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 const QuizContainer = styled.div`
-  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
 `;
 
 const ImageContainer = styled.div`
@@ -19,8 +21,9 @@ const ImageContainer = styled.div`
 `;
 
 const Image = styled.img`
-  max-width: 100%;
-  height: auto;
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
 `;
 
 const Form = styled.form`
@@ -33,54 +36,69 @@ const Form = styled.form`
 `;
 
 const Input = styled.input`
-  padding: 10px;
-  margin-top: 10px;
+  padding: 15px;
   border: 1px solid #ccc;
-  justify-content: center;
   border-radius: 5px;
   width: 100%;
+  margin-bottom: 10px;
+  margin-left : 200px;
 `;
 
 const Button = styled.button`
   padding: 10px;
-  margin-top: 10px;
   background-color: #28a745;
-  justify-content: center;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   width: 100%;
+  text-align: center;
+  margin-left : 200px;
   &:hover {
     background-color: #218838;
   }
 `;
 
-function Quiz() {
+const Result = styled.div`
+  margin-top: 20px;
+  font-size: 18px;
+  color: ${props => (props.correct ? 'green' : 'red')};
+`;
+
+function A2_36() {
   const { id } = useParams();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [userAnswer, setUserAnswer] = useState('');
+  const [result, setResult] = useState(null);
+  const [inputCount, setInputCount] = useState(0);
 
   const questions = [
     { 
       question: '다음 겹쳐진 그림을 보고 5가지를 찾아 이름을 적어보세요.', 
-      image: 'https://via.placeholder.com/300', 
-      correct: ['apple', 'banana', 'orange'] 
-    },
-    { 
-      question: '다음 겹쳐진 그림을 보고 5가지를 찾아 이름을 적어보세요.', 
-      image: 'https://via.placeholder.com/300', 
-      correct: ['car', 'bike', 'bus'] 
-    },
+      image: '/A2_36.png', 
+      correct: ['사과', '바나나', '캔디', '인형', '계란'] 
+    }
   ];
 
   const handleAnswerSubmit = (e) => {
     e.preventDefault();
-    const answerArray = userAnswer.split(',').map(item => item.trim());
-    setAnswers([...answers, answerArray]);
+    const currentAnswers = answers[currentQuestion] || [];
+    currentAnswers.push(userAnswer);
+    setAnswers({ ...answers, [currentQuestion]: currentAnswers });
+
+    const correctAnswers = questions[currentQuestion].correct;
+    const isCorrect = correctAnswers.includes(userAnswer);
+    setResult(isCorrect ? '정답입니다!' : '틀렸습니다. 다시 시도해보세요.');
+
     setUserAnswer('');
-    setCurrentQuestion(currentQuestion + 1);
+    setInputCount(inputCount + 1);
+
+    if (inputCount + 1 === 5) {
+      setCurrentQuestion(currentQuestion + 1);
+      setInputCount(0);
+      setResult(null);
+    }
   };
 
   return (
@@ -96,16 +114,17 @@ function Quiz() {
               type="text" 
               value={userAnswer} 
               onChange={(e) => setUserAnswer(e.target.value)} 
-              placeholder="그림에 나오는 형상을 입력하세요."
+              placeholder="그림에 나오는 물체를 입력하세요."
             />
             <Button type="submit">정답 확인하기!</Button>
           </Form>
+          {result && <Result correct={result === '정답입니다!'}>{result}</Result>}
         </div>
       ) : (
         <div className="quiz-results">
           <h2>Quiz Completed</h2>
           <p>Your answers:</p>
-          {answers.map((answerSet, i) => (
+          {Object.values(answers).map((answerSet, i) => (
             <div key={i}>
               <h3>Question {i + 1}</h3>
               <p>{answerSet.join(', ')}</p>
@@ -117,4 +136,4 @@ function Quiz() {
   );
 }
 
-export default Quiz;
+export default A2_36;

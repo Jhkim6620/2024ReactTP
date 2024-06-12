@@ -3,11 +3,14 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/footer';
 import Quizzes from './pages/quizzes';
-import Quiz from './pages/quiz';
+import A1_28 from './pages/A1_28';
+import A2_36 from './pages/A2_36';
+import A2_46 from './pages/A2_46';
+import A3_53 from './pages/A3_53';
 import Results from './pages/results';
-import Contact from './pages/contact';
 import styled from 'styled-components';
 import Home from './components/home';
+
 
 const AppContainer = styled.div`
   display: flex;
@@ -22,11 +25,11 @@ function App() {
         <Header />
         <Routes>
           <Route path="/quizzes" element={<Quizzes />} />
-          <Route path="/quiz/:id" element={<Quiz />} />
+          <Route path="/A1_28/:id" element={<A1_28 />} />
+          <Route path="/A2_36/:id" element={<A2_36 />} />
+          <Route path="/A2_46/:id" element={<A2_46 />} />
+          <Route path="/A3_53/:id" element={<A3_53 />} />
           <Route path="/results" element={<Results />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/home" element={<Home />} />
-
         </Routes>
         <Footer />
       </AppContainer>

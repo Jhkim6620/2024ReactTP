@@ -7,9 +7,7 @@ import A1_28 from './pages/A1_28';
 import A2_36 from './pages/A2_36';
 import A2_46 from './pages/A2_46';
 import A3_53 from './pages/A3_53';
-import Results from './pages/results';
 import styled from 'styled-components';
-import Home from './components/home';
 
 
 const AppContainer = styled.div`
@@ -29,7 +27,6 @@ function App() {
           <Route path="/A2_36/:id" element={<A2_36 />} />
           <Route path="/A2_46/:id" element={<A2_46 />} />
           <Route path="/A3_53/:id" element={<A3_53 />} />
-          <Route path="/results" element={<Results />} />
         </Routes>
         <Footer />
       </AppContainer>

@@ -14,10 +14,10 @@ const HeaderContainer = styled.header`
 `;
 
 const NavLink = styled(Link)`
-  margin: 0 15px;
+  margin: 0 30px;
   text-decoration: none;
   color: white;
-
+  font-size : 30px;
   &:hover {
     text-decoration: underline;
   }

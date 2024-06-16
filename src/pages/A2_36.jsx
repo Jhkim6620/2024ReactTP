@@ -11,6 +11,7 @@ const QuizContainer = styled.div`
   text-align: center;
   padding: 20px;
   box-sizing: border-box;
+  font-size : 25px;
 `;
 
 const ImageContainer = styled.div`
@@ -21,8 +22,8 @@ const ImageContainer = styled.div`
 `;
 
 const Image = styled.img`
-  width: 400px;
-  height: 400px;
+  width: 700px;
+  height: 700px;
   object-fit: cover;
 `;
 
@@ -33,15 +34,19 @@ const Form = styled.form`
   justify-content: center;
   width: 100%;
   max-width: 400px;
+
 `;
 
 const Input = styled.input`
   padding: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  width: 100%;
+  width: 200%;
   margin-bottom: 10px;
-  margin-left : 200px;
+  margin-left : 600px;
+  font-size : 25px;
+  text-align : center;
+  margin-under : 200px;
 `;
 
 const Button = styled.button`
@@ -54,14 +59,16 @@ const Button = styled.button`
   width: 100%;
   text-align: center;
   margin-left : 200px;
+  font-size : 30px;
+  margin-left : 600px;
   &:hover {
-    background-color: #218838;
+  background-color: #218838;
   }
 `;
 
 const Result = styled.div`
-  margin-top: 20px;
-  font-size: 18px;
+  margin-top: 50px;
+  font-size: 30px;
   color: ${props => (props.correct ? 'green' : 'red')};
 `;
 

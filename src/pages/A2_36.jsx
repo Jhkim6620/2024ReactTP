@@ -72,6 +72,15 @@ const Result = styled.div`
   color: ${props => (props.correct ? 'green' : 'red')};
 `;
 
+const ResultList = styled.div`
+  margin-top: 20px;
+`;
+
+const ResultItem = styled.div`
+  margin-bottom: 10px;
+  color: ${props => (props.correct ? 'green' : 'red')};
+`;
+
 function A2_36() {
   const { id } = useParams();
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -79,6 +88,8 @@ function A2_36() {
   const [userAnswer, setUserAnswer] = useState('');
   const [result, setResult] = useState(null);
   const [inputCount, setInputCount] = useState(0);
+  const [correctAnswers, setCorrectAnswers] = useState([]);
+  const [incorrectAnswers, setIncorrectAnswers] = useState([]);
 
   const questions = [
     { 
@@ -94,10 +105,16 @@ function A2_36() {
     currentAnswers.push(userAnswer);
     setAnswers({ ...answers, [currentQuestion]: currentAnswers });
 
-    const correctAnswers = questions[currentQuestion].correct;
-    const isCorrect = correctAnswers.includes(userAnswer);
-    setResult(isCorrect ? '정답입니다!' : '틀렸습니다. 다시 시도해보세요.');
+    const correctAnswersList = questions[currentQuestion].correct;
+    const isCorrect = correctAnswersList.includes(userAnswer);
 
+    if (isCorrect) {
+      setCorrectAnswers([...correctAnswers, userAnswer]);
+    } else {
+      setIncorrectAnswers([...incorrectAnswers, userAnswer]);
+    }
+
+    setResult(isCorrect ? '정답입니다!' : '틀렸습니다. 다시 시도해보세요.');
     setUserAnswer('');
     setInputCount(inputCount + 1);
 
@@ -129,14 +146,17 @@ function A2_36() {
         </div>
       ) : (
         <div className="quiz-results">
-          <h2>Quiz Completed</h2>
-          <p>Your answers:</p>
-          {Object.values(answers).map((answerSet, i) => (
-            <div key={i}>
-              <h3>Question {i + 1}</h3>
-              <p>{answerSet.join(', ')}</p>
-            </div>
-          ))}
+          <h1>정답 확인</h1>
+          <ResultList>
+            <h2>정답</h2>
+            {correctAnswers.map((answer, i) => (
+              <ResultItem key={i} correct>{answer}</ResultItem>
+            ))}
+            <h2>오답</h2>
+            {incorrectAnswers.map((answer, i) => (
+              <ResultItem key={i} correct={false}>{answer}</ResultItem>
+            ))}
+          </ResultList>
         </div>
       )}
     </QuizContainer>

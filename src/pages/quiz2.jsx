@@ -76,7 +76,7 @@ const BottomButton = styled.button`
   }
 `;
 
-function A2_46() {
+function Quiz2Main() {
   const navigate = useNavigate();
 
   function handleButtonClick() {
@@ -149,4 +149,4 @@ function A2_46() {
   );
 }
 
-export default A2_46;
+export default Quiz2Main;

@@ -135,9 +135,9 @@ function A2_28() {
       
       const isMatch = parseInt(selectedWord) === doubleNumber;
       const isAdjacent = 
-        (x2 === x1 && y2 === y1 + 1) ||  // 오른쪽
-        (x2 === x1 + 1 && y2 === y1) ||  // 아래
-        (x2 === x1 + 1 && y2 === y1 + 1); // 우하방향 대각선
+        (x2 === x1 && y2 === y1 + 1) ||
+        (x2 === x1 + 1 && y2 === y1) ||  
+        (x2 === x1 + 1 && y2 === y1 + 1);
       
       if (isMatch && isAdjacent) {
         alert('정답입니다!');
@@ -162,7 +162,7 @@ function A2_28() {
     setIsWordClicked(false);
     setSelectedWord(null);
     setSelectedNumbers([]);
-    randomWords.splice(0, randomWords.length, ...newRandomWords); 
+    randomWords.splice(0, randomWords.length, ...newRandomWords);
   };
 
   return (
@@ -245,26 +245,24 @@ const TablesContainer = styled.div`
 `;
 
 const SingleTableContainer = styled.div`
-  border: 1px solid black;
   width: 60px;
-  height: 60px;
+  height: 80px;
   td {
     border: 1px solid black;
     width: 60px;
-    height: 60px;
+    height: 20px;
     font-size: 24px;
     text-align: center;
   }
 `;
 
 const DoubleTableContainer = styled.div`
-  border: 1px solid black;
   width: 120px;
-  height: 60px;
+  height: 80px;
   td {
     border: 1px solid black;
     width: 120px;
-    height: 60px;
+    height: 20px;
     font-size: 24px;
     text-align: center;
   }

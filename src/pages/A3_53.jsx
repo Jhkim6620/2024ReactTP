@@ -72,7 +72,6 @@ const styles = {
 const A3_53 = (props) => {
     const [answers, setAnswers] = useState('');
     const [result, setResult] = useState(null);
-    const [count, setCount] = useState(0);
     const questions = {
         question: '다음 표지판의 알맞은 이름을 아래에서 찾아 적어보세요.',
         example: ['장애인주차구역', '대피소', '비상구', '화장실', '금연'],
@@ -93,7 +92,6 @@ const A3_53 = (props) => {
                 Newcount++;
             }
         }
-        setCount(Newcount);
         setResult(`제출 완료! 정답: ${Newcount} 개`);
     };
 

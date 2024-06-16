@@ -153,7 +153,6 @@ function A2_28() {
       alert('두개의 숫자를 선택해주세요.');
     }
 
-    // Reset everything except success and fail counts
     const newMatrix = generateRandomMatrix().map(row => row.map(value => ({ value, isRed: false })));
     const newWords = generateWords(newMatrix.map(row => row.map(cell => cell.value)));
     const newRandomWords = getRandomWords(newWords, 5);
@@ -163,7 +162,7 @@ function A2_28() {
     setIsWordClicked(false);
     setSelectedWord(null);
     setSelectedNumbers([]);
-    randomWords.splice(0, randomWords.length, ...newRandomWords); // Reset randomWords array
+    randomWords.splice(0, randomWords.length, ...newRandomWords); 
   };
 
   return (
